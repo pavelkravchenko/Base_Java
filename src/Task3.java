@@ -10,8 +10,7 @@ public class Task3 {
 
     //метод для изменения значений переменных с использованием дополнительной переменной
     static void replace(int A, int B, int C) {
-        int temp = 0;
-        temp = A;
+        int temp = A;
         A = C;
         C = B;
         B = temp;

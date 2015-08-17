@@ -12,8 +12,7 @@
 
 public class Task2ExtJava {
     public static void main(String[] args) {
-        System.out.println(checkBrackets("abc, {}, [a()]"));
-
+        System.out.println(checkBrackets("45654()}["));
     }
 
     public static boolean checkBrackets(String expression) {
@@ -29,9 +28,14 @@ public class Task2ExtJava {
                 if (curHead < 0) {
                     return false;
                 }
-                stack[curHead] = ' ';
-                curHead--;
+                if (isPairBrackets(stack[curHead], chars[i])) {
+                    stack[curHead] = ' ';
+                    curHead--;
+                }
             }
+        }
+        if (stack[0] != ' ') {
+            return false;
         }
         return true;
     }
@@ -45,6 +49,15 @@ public class Task2ExtJava {
 
     public static boolean isClosedBracket(char bracket) {
         if (bracket == ')' || bracket == '}' || bracket == ']') {
+            return true;
+        }
+        return false;
+    }
+
+    static boolean isPairBrackets(char bracket1, char bracket2) {
+        if ((bracket1 == '(' && bracket2 == ')') ||
+                (bracket1 == '[' && bracket2 == ']') ||
+                (bracket1 == '{' && bracket2 == '}')) {
             return true;
         }
         return false;

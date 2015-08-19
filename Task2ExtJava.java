@@ -70,6 +70,6 @@ public class Task2ExtJava {
         }
         if (bracket == ')') {
             return '(';
-        } else throw new RuntimeException("input value is not closed bracket");
+        }  throw new RuntimeException("input value is not closed bracket");
     }
 }

@@ -27,7 +27,7 @@ public class Task2ExtJava {
                 if (curHead < 0) {
                     return false;
                 } else if (stack[curHead] == getOpenedBracket(chars[i])) {
-                    stack[curHead] = ' ';
+                    //stack[curHead] = ' ';
                     curHead--;
                 } else return false;
             }

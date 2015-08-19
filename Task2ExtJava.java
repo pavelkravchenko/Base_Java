@@ -12,7 +12,7 @@
 
 public class Task2ExtJava {
     public static void main(String[] args) {
-        System.out.println(checkBrackets("45654()}["));
+        System.out.println(checkBrackets("[([456{}])]"));
     }
 
     public static boolean checkBrackets(String expression) {
@@ -23,22 +23,22 @@ public class Task2ExtJava {
             if (isOpenBracket(chars[i])) {
                 curHead++;
                 stack[curHead] = chars[i];
-            }
-            if (isClosedBracket(chars[i])) {
+            } else if (isClosedBracket(chars[i])) {
                 if (curHead < 0) {
                     return false;
-                }
-                if (isPairBrackets(stack[curHead], chars[i])) {
+                } else if (stack[curHead] == getOpenedBracket(chars[i])) {
                     stack[curHead] = ' ';
                     curHead--;
-                }
+                } else return false;
             }
         }
-        if (stack[0] != ' ') {
-            return false;
+
+        if (curHead == -1) {
+            return true;
         }
-        return true;
+        return false;
     }
+
 
     public static boolean isOpenBracket(char bracket) {
         if (bracket == '(' || bracket == '{' || bracket == '[') {
@@ -54,12 +54,22 @@ public class Task2ExtJava {
         return false;
     }
 
-    static boolean isPairBrackets(char bracket1, char bracket2) {
+    /*public static char isPairBrackets(char bracket1, char bracket2) {
         if ((bracket1 == '(' && bracket2 == ')') ||
                 (bracket1 == '[' && bracket2 == ']') ||
                 (bracket1 == '{' && bracket2 == '}')) {
-            return true;
+            return bracket2;
+        } else return 0;
+    }*/
+    public static char getOpenedBracket(char bracket) {
+        if (bracket == '}') {
+            return '{';
         }
-        return false;
+        if (bracket == ']') {
+            return '[';
+        }
+        if (bracket == ')') {
+            return '(';
+        } else throw new RuntimeException("input value is not closed bracket");
     }
 }
